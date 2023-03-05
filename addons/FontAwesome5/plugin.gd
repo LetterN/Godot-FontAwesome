@@ -1,4 +1,4 @@
-tool
+@tool
 extends EditorPlugin
 
 const ICON: Texture = preload("flag-solid.svg")
