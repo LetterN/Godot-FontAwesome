@@ -1,9 +1,9 @@
-tool
+@tool
 extends Label
 
-export(int, 0, 1000, 1) var icon_size := 16 setget set_icon_size
-export(String, "solid", "regular", "brands") var icon_type := "solid" setget set_icon_type
-export(String) var icon_name := "" setget set_icon_name
+@export_range(0, 1000, 1) var icon_size: int = 16: set = set_icon_size
+@export_enum("solid", "regular", "brands") var icon_type: String = "solid": set = set_icon_type
+@export var icon_name: String = "": set = set_icon_name
 
 const icon_font: Dictionary = {
 	"solid": preload("fa-solid-900.ttf"),
@@ -13,7 +13,7 @@ const icon_font: Dictionary = {
 
 const cheatsheet: Dictionary = preload("Cheatsheet.gd").cheatsheet_lut
 
-var font: DynamicFont = DynamicFont.new()
+var font: FontFile = FontFile.new()
 
 func _init():
 	match icon_type:
