@@ -5,31 +5,29 @@ extends Label
 @export_enum("solid", "regular", "brands") var icon_type: String = "solid": set = set_icon_type
 @export var icon_name: String = "": set = set_icon_name
 
-const icon_font: Dictionary = {
-	"solid": preload("fa-solid-900.ttf"),
-	"regular": preload("fa-regular-400.ttf"),
-	"brands": preload("fa-brands-400.ttf")
+const icon_fonts: Dictionary = {
+	"solid": "res://addons/FontAwesome5/fa-solid-900.ttf",
+	"regular": "res://addons/FontAwesome5/fa-regular-400.ttf",
+	"brands": "res://addons/FontAwesome5/fa-brands-400.ttf"
 }
 
 const cheatsheet: Dictionary = preload("Cheatsheet.gd").cheatsheet_lut
 
-var font: FontFile = FontFile.new()
-
 func _init():
+	size = Vector2(icon_size, icon_size)
 	match icon_type:
 		"solid", "regular", "brands":
-			font.set_font_data(icon_font[icon_type])
-			set("custom_fonts/font", font)
+			add_theme_font_override("font", load(icon_fonts[icon_type]))
 
-func set_icon_size(size: int):
-	icon_size = size
-	font.set_size(icon_size)
+func set_icon_size(new_size: int):
+	icon_size = new_size
+	add_theme_font_size_override("font_size", icon_size)
+	size = Vector2(icon_size, icon_size)
 
 func set_icon_type(type: String):
 	icon_type = type
 	match icon_type:
 		"solid", "regular", "brands":
-			font.set_font_data(icon_font[icon_type])
 			set_icon_name(icon_name)
 
 func set_icon_name(name: String):
