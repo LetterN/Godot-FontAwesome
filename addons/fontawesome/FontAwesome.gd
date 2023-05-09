@@ -28,7 +28,7 @@ func _init():
 func set_icon_size(new_size: int):
 	icon_size = clamp(new_size, 1, 16384)
 	add_theme_font_size_override("font_size", icon_size)
-	size = Vector2(icon_size, icon_size)
+	queue_redraw()
 
 func set_icon_type(new_type: String):
 	icon_type = new_type
