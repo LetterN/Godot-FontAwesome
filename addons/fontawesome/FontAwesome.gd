@@ -1,5 +1,6 @@
 @tool
 extends Label
+class_name FontAwesome
 
 @export_category("FontAwesome")
 @export_range(1, 16384) var icon_size: int = 16: set = set_icon_size
